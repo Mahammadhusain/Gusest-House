@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Customer-Register
+{% endblock title %}
+
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row ">
+        <div class="col">
+            <!-- Customer Register Form -->
+            <div class="card mt-2 ">
+                <div class="card-header h5">
+                    Customer Register
+                </div>
+
+                <div class="card-body mt-2">
+                    <!-- Message Display -->
+                    <div class="row">
+                        <div class="col">
+                            {% if messages %}
+                            {% for message in messages %}
+                            <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                                <strong>{{message}}</strong>
+                                <button type="button" class="btn-close" data-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!-- Error Display -->
+                    <div class="row">
+                        <div class="col">
+                            {% if CustomerRegisterForm.errors %}
+                            {% for field in CustomerRegisterForm %}
+                            {% for error in field.errors %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>{{error}}</strong>
+                                <button type="button" class="btn-close" data-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                            {% endfor %}
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <form action="" method="POST" enctype="multipart/form-data" novalidate>
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <input class="form-control" type="text" value="{{CustomerRegisterNo}} - Customers Already Registered" name="" id="" disabled readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="mb-3">
+                                    {{CustomerRegisterForm.fullname}}
+                                </div>
+                            </div>
+                            <dev class="col-3">
+                                <div class="mb-3">
+                                    {{CustomerRegisterForm.companyname}}
+                                </div>
+                            </dev>
+                            <div class="col-3">
+                                <div class="mb-3">
+                                    {{CustomerRegisterForm.designation}}
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="mb-3">
+                                    {{CustomerRegisterForm.mobile}}
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="mb-3">
+                                    {{CustomerRegisterForm.emailid}}
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="mb-3">
+                                    {{CustomerRegisterForm.city}}
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="mb-3">
+                                    {{CustomerRegisterForm.state}}
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="mb-3">
+                                    {{CustomerRegisterForm.country}}
+                                </div>
+                            </div>
+                            
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    {{CustomerRegisterForm.customer_id_type_1}}
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    {{CustomerRegisterForm.proof_id_1}}
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    {{CustomerRegisterForm.customer_id_type_2}}
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    {{CustomerRegisterForm.proof_id_2}}
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    {{CustomerRegisterForm.customer_id_type_3}}
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    {{CustomerRegisterForm.proof_id_3}}
+                                </div>
+                            </div>
+                            <div class="mb-3" >
+                                {{CustomerRegisterForm.fulladdress}}
+                            </div>
+                            
+                            <div class="mb-3">
+                                <button class="btn btn-primary float-right" type="submit">Register</button>
+                                <a href="{% url 'cutomerhistory' %}" class="btn btn-light float-right mr-2">Customer List</a>
+                                <button class="btn btn-warning float-right mr-2" type="reset">Reset Form</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+
+   
+{% endblock body %}

@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+
+{% block title %}
+CheckedIn
+{% endblock title %}
+
+
+{% block body %}
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-6 ml-3">
+        <!-- Check-In Details -->
+        <table class="table table-sm table-responsive-sm" style="border-color: black; width: 35rem;">
+
+            <tbody>
+                {% for i in checkinfullinfo %}
+                <tr>
+                    <th style="background-color: #e6e6e6;" colspan="2" class="text-center text-bold">Chek-In
+                        Details</th>
+                </tr>
+                <tr>
+                    <th style="width:30%" class="" scope="row">Ch-In.No</th>
+                    <td style="font-style: italic;" class="text-left" scope="row">{{i.chno}}</td>
+                </tr>
+                <tr>
+                    <th class="" scope="row">Ch-In.Date</th>
+                    <td style="font-style: italic;" class="text-left" scope="row">{{i.chindate}}</td>
+                </tr>
+                <tr>
+                    <th class="" scope="row">Ch-In.Time</th>
+                    <td style="font-style: italic;" class="text-left" scope="row">{{i.chintime}}</td>
+                </tr>
+                <tr>
+                    <th class="" scope="row">Ch-Out.Date</th>
+                    <td style="font-style: italic;" class="text-left" scope="row">{{i.choutdate}}</td>
+                </tr>
+                <tr>
+                    <th class="" scope="row">Ch-Out.Time</th>
+                    <td style="font-style: italic;" class="text-left" scope="row">{{i.chouttime}}</td>
+                </tr>
+                <tr>
+                    <th style="background-color: #e6e6e6;" colspan="2" class="text-center text-bold">Room
+                        Details</th>
+                </tr>
+                <tr>
+                    <th class="" scope="row">Room No</th>
+                    <td style="font-style: italic;" class="text-left" scope="row">{{i.rno}}</td>
+                </tr>
+                <tr>
+                    <th class="" scope="row">Room Type</th>
+                    <td style="font-style: italic;" class="text-left" scope="row">{{i.rtype}}</td>
+                </tr>
+                <tr>
+                    <th class="" scope="row">(<i class="fa fa-rupee"></i>) Room Price</th>
+                    <td style="font-style: italic;" class="text-left" scope="row">{{i.rprice}}</td>
+                </tr>
+                <tr>
+                    <th style="background-color: #e6e6e6;" colspan="2" class="text-center text-bold">Customer
+                        Details</th>
+                </tr>
+                <tr>
+                    <th class="" scope="row">Customer Name</th>
+                    <td style="font-style: italic;" class="text-left" scope="row">{{i.fullname}}</td>
+                </tr>
+                <tr>
+                    <th class="" scope="row">Company Name</th>
+                    <td style="font-style: italic;" class="text-left" scope="row">{{i.companyname}}</td>
+                </tr>
+                <tr>
+                    <th class="" scope="row">Designation</th>
+                    <td style="font-style: italic;" class="text-left" scope="row">{{i.designation}}</td>
+                </tr>
+                <tr>
+                    <th class="" scope="row">Mobile No</th>
+                    <td style="font-style: italic;" class="text-left" scope="row">{{i.mobile}}</td>
+                </tr>
+                <tr>
+                    <th class="" scope="row">E-Mail</th>
+                    <td style="font-style: italic;" class="text-left" scope="row">{{i.emailid}}</td>
+                </tr>
+                <tr>
+                    <th class="" scope="row">CIty</th>
+                    <td style="font-style: italic;" class="text-left" scope="row">{{i.city}}</td>
+                </tr>
+                <tr>
+                    <th class="" scope="row">State</th>
+                    <td style="font-style: italic;" class="text-left" scope="row">{{i.state}}</td>
+                </tr>
+                <tr>
+                    <th class="" scope="row">Country</th>
+                    <td style="font-style: italic;" class="text-left" scope="row">{{i.country}}</td>
+                </tr>
+                <tr>
+                    <th class="" scope="row">Full Address</th>
+                    <td style="font-style: italic;" class="text-left" scope="row">{{i.fulladdress}}</td>
+                </tr>
+                <tr>
+                    <th class="" scope="row">Total Days</th>
+                    <td style="font-style: italic;" class="text-left" scope="row">{{i.chtotaldays}}</td>
+                </tr>
+                <tr>
+                    <th class="" scope="row">Total Person</th>
+                    <td style="font-style: italic;" class="text-left" scope="row">{{i.person}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+
+
+
+    <div class="col-4">
+        <!-- Payment Calculations -->
+        <table class="table table-sm table-responsive-sm" style="border-color: black;">
+
+            {% for i in checkinfullinfo %}
+            <tr>
+                <th colspan="3" class="text-center" style="background-color: #e6e6e6;">Payment Information</th>
+
+            </tr>
+            <tr>
+                <th class="" scope="row">Room Tariff</th>
+                <td style="font-style: italic;" class="" scope="row"></td>
+                <td style="font-style: italic;" class="" scope="row">{{i.rprice}}</td>
+            </tr>
+            <tr>
+                <th class="" scope="row">Total Days</th>
+                <td style="font-style: italic;" class="" scope="row"> x </td>
+                <td style="font-style: italic;" class="" scope="row">{{i.chtotaldays}}</td>
+            </tr>
+            <tr>
+                <th class="" scope="row">Total Room Tarrif</th>
+                <td style="font-style: italic;" class="" scope="row"> = </td>
+                <td style="font-style: italic;" class="" scope="row"><strong>{{i.totalroomtarif}}</strong></td>
+            </tr>
+            <tr>
+                <th class="" scope="row">Per Person Rate</th>
+                <td style="font-style: italic;" class="" scope="row"></td>
+                <td style="font-style: italic;" class="" scope="row">{{i.extrarate}}</td>
+            </tr>
+            <tr>
+                <th class="" scope="row">Extra Person</th>
+                <td style="font-style: italic;" class="" scope="row"> x </td>
+                <td style="font-style: italic;" class="" scope="row">{{i.extraperson}}</td>
+            </tr>
+            <tr>
+                <th class="" scope="row">Total Extra Rate (₹)</th>
+                <td style="font-style: italic;" class="" scope="row"> = </td>
+                <td style="font-style: italic;" class="" scope="row"><strong>{{i.totalextrarate}}</strong></td>
+            </tr>
+            <tr>
+                <th class="" scope="row">Total Room Amount (₹)</th>
+                <td style="font-style: italic;" class="" scope="row"> = </td>
+                <td style="font-style: italic;" class="" scope="row">{{i.roomamount}}</td>
+            </tr>
+            <tr>
+                <th class="" scope="row">Food Bill (₹)</th>
+                <td style="font-style: italic;" class="" scope="row"> + </td>
+                <td style="font-style: italic;" class="" scope="row">{{i.foodbillamount}}</td>
+            </tr>
+            <tr>
+                <th class="" scope="row">Laundry Bill (₹)</th>
+                <td style="font-style: italic;" class="" scope="row"> + </td>
+                <td style="font-style: italic;" class="" scope="row">{{i.laundybill}}</td>
+            </tr>
+            <tr>
+                <th class="" scope="row">Phone Bill (₹)</th>
+                <td style="font-style: italic;" class="" scope="row"> + </td>
+                <td style="font-style: italic;" class="" scope="row">{{i.phonebill}}</td>
+            </tr>
+            <tr>
+                <th class="" scope="row">Internet Charge (₹)</th>
+                <td style="font-style: italic;" class="" scope="row"> + </td>
+                <td style="font-style: italic;" class="" scope="row">{{i.Internetcharge}}</td>
+            </tr>
+            <tr>
+                <th class="" scope="row">Other Charge (₹)<small
+                        style="font-size: 3;">({{i.otherchargelable}})</small> </th>
+                <td style="font-style: italic;" class="" scope="row"> + </td>
+                <td style="font-style: italic;" class="" scope="row">{{i.othercharge}}</td>
+            </tr>
+            <tr>
+                <th class="" scope="row">Total Amount (₹)</th>
+                <td style="font-style: italic;" class="" scope="row"> = </td>
+                <td style="font-style: italic; color:#7733ff;" class=" h6" scope="row">
+                    {{i.totalamount}}</td>
+            </tr>
+            <tr>
+                <th class="" scope="row">Discount ({{i.discount}})%</th>
+                <td style="font-style: italic;" class="" scope="row"> - </td>
+                <td style="font-style: italic; color:#ff0000;" class=" h6" scope="row">
+                    {{i.discountamount}}</td>
+            </tr>
+            <tr>
+                <th class="" scope="row">Actual Amount (₹)</th>
+                <td style="font-style: italic;" class="" scope="row"> = </td>
+                <td style="font-style: italic; color:#7733ff;" class=" h6" scope="row">
+                    {{i.actualamount}}</td>
+            </tr>
+            <tr>
+                <th class="" scope="row">GST ({{i.gstshow}})%</th>
+                <td style="font-style: italic;" class="" scope="row"> + </td>
+                <td style="font-style: italic; color:#00b300;" class="h6 " scope="row">{{i.gstamount}}
+                </td>
+            </tr>
+            <tr>
+                <th class="" scope="row">Final Amount (₹)</th>
+                <td style="font-style: italic;" class="" scope="row"> = </td>
+                <td style="font-style: italic; color:#7733ff;" class=" h6" scope="row">
+                    {{i.finalamount}}</td>
+            </tr>
+            <tr>
+                <th class="" scope="row">Round Amount (₹)</th>
+                <td style="font-style: italic;" class="" scope="row"> = </td>
+                <td style="font-style: italic; color:#cc6600;" class=" h6" scope="row">
+                    {{i.roundamount}}</td>
+            </tr>
+            <tr>
+                <th class="" scope="row">Advanced Paid (₹)</th>
+                <td style="font-style: italic;" class="" scope="row"> - </td>
+                <td style="font-style: italic; color:#ff0000;" class=" h6" scope="row">
+                    {{i.advancepaidamount}}</td>
+            </tr>
+            <tr>
+                <th class=" h4" scope="row">Payable Amount (₹)</th>
+                <td style="font-style: italic;" class="" scope="row"><b>=</b></td>
+                <td style="font-style: italic; color:#00b300;" class=" h3" scope="row">
+                    {{i.paybleamount}}.00</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    
+</div>
+
+
+
+{% endblock body %}

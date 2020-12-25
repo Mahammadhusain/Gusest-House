@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Config
+{% endblock title %}
+
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Customer Full Information -->
+        <div class="col-12">
+            <!-- All Room Price -->
+            <div class="card mt-2 text-white" style="background-color: #527a7a; border-color: #527a7a;">
+                <div class="card-header h5">
+                    Customer Details
+                    <div class="row">
+                        <div class="col-9"></div>
+                        <div class="col d-grid gap-2 mb-2">
+                            <a class="btn btn-warning " href="{% url 'dashboard' %}">Dashboard</a>
+                        </div>
+                        <div class="col d-grid gap-2 mb-2">
+                            <a class="btn btn-light" href="{% url 'CRegister' %}">Register New</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    
+                    <div class="col">
+                        
+                        <table class="table table-bordered table-success table-responsive" >
+                            
+                            {% for i  in fullinfo %}
+                            <tbody>
+                                
+                                
+                                <tr>
+                                    <th style="width: 200px;">Registered No</th>
+                                    <td>{{i.registerno}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Full Name</th>
+                                    <td>{{i.fullname}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Company Name</th>
+                                    <td>{{i.companyname}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Designation</th>
+                                    <td>{{i.designation}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Mobile</th>
+                                    <td>{{i.mobile}}</td>
+                                </tr>
+                                <tr>
+                                    <th>E-Mail</th>
+                                    <td>{{i.emailid}}</td>
+                                </tr>
+                                <tr>
+                                    <th>City</th>
+                                    <td>{{i.city}}</td>
+                                </tr>
+                                <tr>
+                                    <th>State</th>
+                                    <td>{{i.state}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Country</th>
+                                    <td>{{i.country}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Proof-1</th>
+                                    <td><img class="img-thumbnail" src="{{i.proof_id_1.url}}" alt="" style="width: 200px;"></td>
+                                </tr>
+                                <tr>
+                                    <th>Proof-2</th>
+                                    <td><img class="img-thumbnail" src="{{i.proof_id_2.url}}" alt="" style="width: 200px;"></td>
+                                    <!-- <td>{{i.proof_id_2.url}}</td> -->
+                                    
+                                </tr>
+                                <tr>
+                                    <th>Proof-3</th>
+                                    <td><img class="img-thumbnail" src="{{i.proof_id_3.url}}" alt="" style="width: 200px;"></td>
+                                </tr>
+                                <tr>
+                                    <th>Full Address</th>
+                                    <td>{{i.fulladdress}}</td>
+                                </tr>
+                                <tr>
+                                    <th>In Date</th>
+                                    <td>{{i.in_date|date:"d-m-Y"}}</td>
+                                </tr>
+                                <tr>
+                                    <th>In Time</th>
+                                    <td>{{i.in_time|date:'h:i:s A'}}</td>
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                                            
+                                   
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+{% endblock body %}

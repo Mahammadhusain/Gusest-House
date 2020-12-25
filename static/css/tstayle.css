@@ -1,0 +1,26 @@
+#tabledash {
+    width: 1200px; /* 140px * 5 column + 16px scrollbar width */
+    border-spacing: 0;
+}
+
+#tbodydash, #theaddash #trdash { display: block; }
+
+#tbodydash {
+    height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#tbodydash #tddash, #theaddash #thdash {
+    width: 200px;
+}
+
+#theaddash #th:last-child {
+    width: 156px; /* 140px + 16px scrollbar width */
+}
+
+
+.errorlist{
+    color: red;
+    list-style-type: none;
+}

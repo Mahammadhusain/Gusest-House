@@ -1,0 +1,318 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Room-CheckIn
+{% endblock title %}
+
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            
+            <!-- CheckIn Room Form -->
+            <div class="card mt-2 ">
+                <div class="card-header h3 ">
+                    Checkin Room
+                    
+                </div>
+
+                <div class="card-body mt-2">
+                    <!-- Message Display -->
+                    <div class="row">
+                        <div class="col">
+                            {% if messages %}
+                            {% for message in messages %}
+                            <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                                <strong>{{message}}</strong>
+                                <button type="button" class="btn-close" data-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!-- Error Display -->
+                    <div class="row">
+                        <div class="col">
+                            {% if RoomCheckinForm.errors %}
+                            {% for field in RoomCheckinForm %}
+                            {% for error in field.errors %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>{{error}}</strong>
+                                <button type="button" class="btn-close" data-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                            {% endfor %}
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <form action="" method="POST" novalidate>
+                        {% csrf_token %}
+                        <!-- Room Details -->
+                        <div class="p-1 border " style="border-radius: 5px 5px 0px 0px;background-color: #8c8c8c;"><h5 class="ml-2 mb-1 text-white">Room Information</h5></div>
+                        <div class="border p-3" style="border-radius: 0px 0px 5px 5px;">
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Total Days</label>
+                                        <input class="form-control text-danger" type="text" name="" value="{{showtotaldays}}" id="" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Check-In No</label>
+                                        {{RoomCheckinForm.chno}}
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Check-In Date</label>
+                                        {{RoomCheckinForm.chindate}}
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Check-In Time</label>
+                                        {{RoomCheckinForm.chintime}}
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Check-Out Date</label>
+                                        {{RoomCheckinForm.choutdate}}
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Check-Out Time</label>
+                                        {{RoomCheckinForm.chouttime}}
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Room No</label>
+                                        {{RoomCheckinForm.rno}}
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Room Type</label>
+                                        {{RoomCheckinForm.rtype}}
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Room Price</label>
+                                        {{RoomCheckinForm.rprice}}
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                            
+
+                        <!-- Customer Information -->
+                        <div class="p-1 border mt-4 " style="border-radius: 5px 5px 0px 0px;background-color: #8c8c8c;"><h5 class="ml-2 mb-1 text-white">Customer Information</h5></div>
+                        <div class="border p-3" style="border-radius: 0px 0px 5px 5px;">
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Full Name</label>
+                                        {{RoomCheckinForm.fullname}}
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Company Name</label>
+                                        {{RoomCheckinForm.companyname}}
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Designation</label>
+                                        {{RoomCheckinForm.designation}}
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Mobile No</label>
+                                        {{RoomCheckinForm.mobile}}
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">E-Mail</label>
+                                        {{RoomCheckinForm.emailid}}
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">City</label>
+                                        {{RoomCheckinForm.city}}
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">State</label>
+                                        {{RoomCheckinForm.state}}
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Country</label>
+                                        {{RoomCheckinForm.country}}
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Full Address</label>
+                                        {{RoomCheckinForm.fulladdress}}
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+
+                        <!-- Other Bills & Charges  Information -->
+                        <div class="p-1 border mt-4 " style="border-radius: 5px 5px 0px 0px;background-color: #8c8c8c;"><h5 class="ml-2 mb-1 text-white">Other Bills & Charges Information</h5></div>
+                        <div class="border p-3" style="border-radius: 0px 0px 5px 5px;">
+                            <div class="row">
+                                <div class="col-2">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">GST (%)</label>
+                                        {{RoomCheckinForm.gst}}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Food Bill Amount</label>
+                                        {{RoomCheckinForm.foodbillamount}}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Laundry Bill Amount</label>
+                                        {{RoomCheckinForm.laundybill}}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Phone Bill Amount</label>
+                                        {{RoomCheckinForm.phonebill}}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Internet Charge</label>
+                                        {{RoomCheckinForm.Internetcharge}}
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Other Charges Amount</label>
+                                        {{RoomCheckinForm.othercharge}}
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Type Of Charges <small>(Reson for Collect Other Charges)</small></label>
+                                        {{RoomCheckinForm.otherchargelable}}
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                        </div>
+
+
+                        <!-- Payment Information -->
+                        <div class="p-1 border mt-4 " style="border-radius: 5px 5px 0px 0px;background-color: #8c8c8c;"><h5 class="ml-2 mb-1 text-white">Payment Information</h5></div>
+                        <div class="border p-3" style="border-radius: 0px 0px 5px 5px;">
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Total Person</label>
+                                        {{RoomCheckinForm.person}}
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Extra Person</label>
+                                        {{RoomCheckinForm.extraperson}}
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Extra Rate</label>
+                                        {{RoomCheckinForm.extrarate}}
+                                    </div>
+                                </div>
+                                <!-- <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Extra Days</label>
+                                        {{RoomCheckinForm.extradays}}
+                                    </div>
+                                </div> -->
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Discount (%)</label>
+                                        {{RoomCheckinForm.discount}}
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Advanced Paid</label>
+                                        {{RoomCheckinForm.advancepaidamount}}
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Actual Amount</label>
+                                        <p class="text-bold h3 form-label" style="background-color: #ffff99;">{{showactualamount}}/-</p>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Round Amount (Final Amount)</label>
+                                        <p class="text-bold h3 form-label" style="background-color: #99ffbb;">{{showroundamount}}/-</p>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        {{RoomCheckinForm.paymethod}}
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                                   
+                        <button class="btn btn-primary mt-3 float-right" type="submit" value="Check-In">Check-In Room</button>
+                    </form>
+                </div>
+            </div>
+
+
+
+            
+
+
+
+
+        </div>
+        
+    </div>
+
+
+   
+    
+
+    
+</div>
+
+{% endblock body %}

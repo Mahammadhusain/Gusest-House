@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Only Categories
+{% endblock title %}
+
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4">
+            <!-- Add New Room Categories -->
+            <div class="card mt-2 ">
+                <div class="card-header h5">
+                    Add New Room Categories
+                </div>
+
+                <div class="card-body mt-2">
+                    <!-- Message Display -->
+                    <div class="row">
+                        <div class="col">
+                            {% if messages %}
+                            {% for message in messages %}
+                            <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                                <strong>{{message}}</strong>
+                                <button type="button" class="btn-close" data-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!-- Error Display -->
+                    <div class="row">
+                        <div class="col">
+                            {% if addCategories.errors %}
+                            {% for field in addCategories %}
+                            {% for error in field.errors %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>{{error}}</strong>
+                                <button type="button" class="btn-close" data-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                            {% endfor %}
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <form action="" method="POST" novalidate>
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            {{addCategories.rtype}}
+                        </div>
+                        <div class="mb-3 float-right">
+                            <input class="btn btn-primary" type="submit" value="Add Room Number" type="text">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-8">
+            <!-- All Room Number -->
+            <div class="card mt-2 ">
+                <div class="card-header h5">
+                    Available Room Categories
+                </div>
+                <div class="card-body">
+                    <div class="col">
+                        <table>
+                            
+                            <tr>
+                                <td>
+                                    {% for i in roomdata %}
+                                        <button style="background-color: #990099;" type="button" class="btn dropdown-toggle mt-1 text-white" data-toggle="dropdown" aria-expanded="false">
+                                            {{i.rtype}}
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="{% url 'deleteroomCategories' i.pk %}">Delete</a></li>
+                                            <li><a class="dropdown-item" href="#">Separated link</a></li>
+                                          </ul>
+                                    {% endfor %}
+                                    </td>
+                                </tr>
+                                
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+{% endblock body %}

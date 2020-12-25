@@ -1,0 +1,311 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Room-Display
+{% endblock title %}
+
+
+{% block body %}
+<div class="container-fluid">
+
+     <!-- Non-Ac Rooms -->
+    <div class="border p-2 text-white mt-1"
+    style="border-radius: 5px 5px 0px 0px; background-color: #696969;">
+    <h5 class="ml-2">Non-Ac Rooms</h5>
+    </div>
+
+    <div class="border p-4" style="border-radius: 0px 0px 5px 5px; border-color: #696969;">
+        <div class="d-flex" style="background-color: #e0ebeb; ">
+            {% for i in DisplayAllData %}
+
+            <!-- Available Room -->
+            {% if i.rtype == 'Non-Ac' and i.rstatus == False and i.rcondition == 'Available' %}
+            <table>
+                <td class="p-2">
+                    <div class="btn-group">
+                        <a href="{% url 'RCheckin' i.pk %}" data-toggle="tooltip" data-placement="top"
+                            title="{{i.rno}} - is Available For Checkin" type="button"
+                            class="btn text-white" style="background-color: #00b386;">
+                            <h3>{{i.rno}}</h3>
+                        </a>
+                        <button type="button"
+                            class="btn text-white dropdown-toggle dropdown-toggle-split p-2"
+                            style="background-color:#00b386;" id="dropdownMenuReference"
+                            data-toggle="dropdown" aria-expanded="false" data-reference="parent">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Separated link</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </table>
+            {% endif %}
+
+            <!-- Occupied Room -->
+            {% if i.rtype == 'Non-Ac' and i.rstatus == True and i.rcondition == 'Available' %}
+            <table>
+                <td class="p-2">
+                    <div class="btn-group">
+                        <button type="button" data-toggle="tooltip" data-placement="top"
+                            title="{{i.rno}} - is Already Occupied" class="btn text-white"
+                            style="background-color:#ffad33;">
+                            <h3>{{i.rno}}</h3>
+                        </button>
+                        <button type="button"
+                            class="btn text-white dropdown-toggle dropdown-toggle-split p-2"
+                            style="background-color: #ffad33;" id="dropdownMenuReference"
+                            data-toggle="dropdown" aria-expanded="false" data-reference="parent">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+                            <li >
+                                <a class="dropdown-item" href="{% url 'vacantroom' i.pk %}">Make Vacant</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Separated link</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </table>
+            {% endif %}
+
+            <!-- Under Maintenance -->
+            {% if i.rtype == 'Non-Ac' and i.rstatus == False and i.rcondition == 'Maintenance' %}
+            <table>
+                <td class="p-2">
+                    <div class="btn-group">
+                        <button href="{% url 'RCheckin' i.pk %}" data-toggle="tooltip"
+                            data-placement="top" title="{{i.rno}} - is Under Maintenance " type="button"
+                            class="btn text-white" style="background-color: #d9d9d9;">
+                            <h3>{{i.rno}}</h3>
+                        </button>
+                        <button type="button"
+                            class="btn text-white dropdown-toggle dropdown-toggle-split p-2"
+                            style="background-color:#d9d9d9;" id="dropdownMenuReference"
+                            data-toggle="dropdown" aria-expanded="false" data-reference="parent">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+
+                    </div>
+                </td>
+            </table>
+            {% endif %}
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+    <!-- Ac Rooms Display -->
+    <div class="border p-2 text-white mt-4 "
+        style="border-radius: 5px 5px 0px 0px; background-color: #696969;">
+        <h5 class="ml-2">Ac Rooms</h5>
+    </div>
+
+    <div class="border p-4" style="border-radius: 0px 0px 5px 5px; border-color: #696969;">
+        <div class="d-flex">
+            {% for i in DisplayAllData %}
+
+            <!-- Available Room -->
+            {% if i.rtype == 'Ac' and i.rstatus == False and i.rcondition == 'Available' %}
+            <table>
+                <td class="p-2">
+                    <div class="btn-group">
+                        <a href="{% url 'RCheckin' i.pk %}" data-toggle="tooltip" data-placement="top"
+                            title="{{i.rno}} - is Available For Checkin" type="button"
+                            class="btn text-white " style="background-color: #862d59;">
+                            <h3>{{i.rno}}</h3>
+                        </a>
+                        <button type="button"
+                            class="btn text-white dropdown-toggle dropdown-toggle-split p-2"
+                            style="background-color:#862d59;" id="dropdownMenuReference"
+                            data-toggle="dropdown" aria-expanded="false" data-reference="parent">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Separated link</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </table>
+            {% endif %}
+
+            <!-- Occupied Room -->
+            {% if i.rtype == 'Ac' and i.rstatus == True and i.rcondition == 'Available' %}
+            <table>
+                <td class="p-2">
+                    <div class="btn-group">
+                        <button type="button" data-toggle="tooltip" data-placement="top"
+                            title="{{i.rno}} - is Already Occupied" class="btn text-white"
+                            style="background-color:#ffad33;">
+                            <h3>{{i.rno}}</h3>
+                        </button>
+                        <button type="button"
+                            class="btn text-white dropdown-toggle dropdown-toggle-split p-2"
+                            style="background-color: #ffad33;" id="dropdownMenuReference"
+                            data-toggle="dropdown" aria-expanded="false" data-reference="parent">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+                            <li><a class="dropdown-item" href="{% url 'vacantroom' i.pk %}">Make Vacant</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Separated link</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </table>
+            {% endif %}
+
+            <!-- Under Maintenance -->
+            {% if i.rtype == 'Ac' and i.rstatus == False and i.rcondition == 'Maintenance' %}
+            <table>
+                <td class="p-2">
+                    <div class="btn-group">
+                        <button href="{% url 'RCheckin' i.pk %}" data-toggle="tooltip"
+                            data-placement="top" title="{{i.rno}} - is Under Maintenance " type="button"
+                            class="btn text-white" style="background-color: #d9d9d9;">
+                            <h3>{{i.rno}}</h3>
+                        </button>
+                        <button type="button"
+                            class="btn text-white dropdown-toggle dropdown-toggle-split p-2"
+                            style="background-color:#d9d9d9;" id="dropdownMenuReference"
+                            data-toggle="dropdown" aria-expanded="false" data-reference="parent">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+
+                    </div>
+                </td>
+            </table>
+            {% endif %}
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+
+    <!-- Premium Rooms Display -->
+    <div class="border p-2 text-white mt-4 "
+        style="border-radius: 5px 5px 0px 0px; background-color: #696969;">
+        <h5 class="ml-2">Premium Rooms</h5>
+    </div>
+
+    <div class="border p-4" style="border-radius: 0px 0px 5px 5px;">
+        <div class="d-flex">
+            {% for i in DisplayAllData %}
+
+            <!-- Available Room -->
+            {% if i.rtype == 'Premium' and i.rstatus == False and i.rcondition == 'Available' %}
+            <table>
+                <td class="p-2">
+                    <div class="btn-group">
+                        <a href="{% url 'RCheckin' i.pk %}" data-toggle="tooltip" data-placement="top"
+                            title="{{i.rno}} - is Available For Checkin" type="button"
+                            class="btn text-white" style="background-color:#476b6b;">
+                            <h3>{{i.rno}}</h3>
+                        </a>
+                        <button type="button"
+                            class="btn text-white dropdown-toggle dropdown-toggle-split p-2"
+                            style="background-color:#476b6b;" id="dropdownMenuReference"
+                            data-toggle="dropdown" aria-expanded="false" data-reference="parent">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Separated link</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </table>
+            {% endif %}
+
+            <!-- Occupied Room -->
+            {% if i.rtype == 'Premium' and i.rstatus == True and i.rcondition == 'Available' %}
+            <table>
+                <td class="p-2">
+                    <div class="btn-group">
+                        <button type="button" data-toggle="tooltip" data-placement="top"
+                            title="{{i.rno}} - is Already Occupied" class="btn text-white"
+                            style="background-color:#ffad33;">
+                            <h3>{{i.rno}}</h3>
+                        </button>
+                        <button type="button"
+                            class="btn text-white dropdown-toggle dropdown-toggle-split p-2"
+                            style="background-color: #ffad33;" id="dropdownMenuReference"
+                            data-toggle="dropdown" aria-expanded="false" data-reference="parent">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+                            <li><a class="dropdown-item" href="{% url 'vacantroom' i.pk %}">Make Vacant</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Separated link</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </table>
+            {% endif %}
+
+            <!-- Under Maintenance -->
+            {% if i.rtype == 'Premium' and i.rstatus == False and i.rcondition == 'Maintenance' %}
+            <table>
+                <td class="p-2">
+                    <div class="btn-group">
+                        <button href="{% url 'RCheckin' i.pk %}" data-toggle="tooltip"
+                            data-placement="top" title="{{i.rno}} - is Under Maintenance " type="button"
+                            class="btn text-white" style="background-color: #d9d9d9;">
+                            <h3>{{i.rno}}</h3>
+                        </button>
+                        <button type="button"
+                            class="btn text-white dropdown-toggle dropdown-toggle-split p-2"
+                            style="background-color:#d9d9d9;" id="dropdownMenuReference"
+                            data-toggle="dropdown" aria-expanded="false" data-reference="parent">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+
+                    </div>
+                </td>
+            </table>
+            {% endif %}
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+</div>
+
+
+
+{% endblock body %}
